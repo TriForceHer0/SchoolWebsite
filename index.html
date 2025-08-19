@@ -1,196 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Placeholder / Coming Soon page" />
-  <title>Coming Soon • Your Site</title>
-  <style>
-    :root {
-      --bg1: #0f172a; /* slate-900 */
-      --bg2: #111827; /* gray-900 */
-      --fg: #e5e7eb;  /* gray-200 */
-      --muted: #9ca3af; /* gray-400 */
-      --accent: #22d3ee; /* cyan-400 */
-      --accent-2: #a78bfa; /* violet-400 */
-      --card: #111827;
-      --ring: rgba(34, 211, 238, 0.35);
-    }
-
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
-        Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--fg);
-      background: radial-gradient(1200px 600px at 20% 0%, #1f2937 0%, transparent 60%),
-                  radial-gradient(1000px 500px at 100% 100%, #111827 0%, transparent 50%),
-                  linear-gradient(160deg, var(--bg1), var(--bg2));
-      display: grid;
-      place-items: center;
-      padding: 24px;
-    }
-
-    .card {
-      width: 100%;
-      max-width: 720px;
-      background: color-mix(in oklab, var(--card), black 5%);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04);
-      overflow: hidden;
-      position: relative;
-      isolation: isolate;
-    }
-
-    .glow {
-      position: absolute;
-      inset: -1px;
-      background: radial-gradient(800px 300px at 50% -10%, color-mix(in oklab, var(--accent), transparent 70%) 0%, transparent 60%),
-                  radial-gradient(600px 200px at 80% 120%, color-mix(in oklab, var(--accent-2), transparent 75%) 0%, transparent 60%);
-      filter: blur(16px);
-      opacity: .6;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    header { padding: 28px 28px 8px; display: flex; gap: 12px; align-items: center; }
-    .logo {
-      width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 6px 20px color-mix(in oklab, var(--accent), black 70%);
-      font-weight: 800; color: #0b1020; letter-spacing: .5px;
-    }
-    .brand { font-weight: 700; font-size: 1.05rem; letter-spacing: .3px; }
-
-    main { padding: 8px 28px 28px; }
-
-    h1 { font-size: clamp(1.8rem, 2vw + 1.2rem, 2.6rem); line-height: 1.1; margin: 6px 0 12px; }
-    p { color: var(--muted); margin: 0 0 18px; }
-
-    .pill {
-      display: inline-flex; align-items: center; gap: 10px; padding: 8px 12px;
-      border-radius: 999px; border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.03);
-      backdrop-filter: blur(6px);
-      margin-bottom: 14px;
-      font-size: .9rem; color: color-mix(in oklab, var(--fg), var(--muted) 15%);
-    }
-
-    .progress { height: 10px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; }
-    .bar { height: 100%; width: 42%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); position: relative; }
-    .bar::after {
-      content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,.15), transparent 60%);
-      mix-blend-mode: overlay; animation: shimmer 2s linear infinite;
-      transform: translateX(-100%);
-    }
-    @keyframes shimmer { to { transform: translateX(100%); } }
-
-    form { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 16px; }
-    input[type="email"] {
-      padding: 14px 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.04); color: var(--fg); outline: none;
-      box-shadow: inset 0 0 0 1px transparent;
-    }
-    input[type="email"]:focus { box-shadow: 0 0 0 6px var(--ring); }
-
-    button {
-      padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15);
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #0b1020; font-weight: 700; cursor: pointer;
-      box-shadow: 0 6px 24px color-mix(in oklab, var(--accent-2), black 80%);
-    }
-    button:hover { filter: brightness(1.05); }
-
-    .meta { display: grid; gap: 10px; grid-template-columns: 1fr; margin-top: 18px; }
-    .stat {
-      display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px;
-      border: 1px dashed rgba(255,255,255,0.12); color: var(--muted);
-    }
-
-    .social { display: flex; gap: 12px; margin-top: 18px; }
-    .social a {
-      width: 40px; height: 40px; display: grid; place-items: center; border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.12); color: var(--fg); text-decoration: none;
-      background: rgba(255,255,255,0.02);
-    }
-    .social a:hover { border-color: rgba(255,255,255,0.28); }
-
-    footer { padding: 18px 28px 24px; color: var(--muted); font-size: .9rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; border-top: 1px solid rgba(255,255,255,0.06); }
-    .tiny { opacity: .7; }
-
-    @media (min-width: 560px) {
-      .meta { grid-template-columns: repeat(3, 1fr); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Game Page</title>
 </head>
 <body>
-  <div class="card" role="region" aria-label="Coming soon placeholder">
-    <div class="glow" aria-hidden="true"></div>
+    <h1>Welcome to the Game</h1>
+    <button id="playGame">Play Game</button>
 
-    <header>
-      <div class="logo" aria-hidden="true">YS</div>
-      <div class="brand" aria-label="Brand name">Your&nbsp;Site</div>
-    </header>
+    <!-- Container where the game will appear -->
+    <div id="gameContainer" style="margin-top:20px;">
+        <!-- Game will load here -->
+    </div>
 
-    <main>
-      <div class="pill" aria-live="polite">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v5l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        Launching soon
-      </div>
+    <script>
+        const playButton = document.getElementById('playGame');
+        const gameContainer = document.getElementById('gameContainer');
 
-      <h1>Something great is on the way</h1>
-      <p>We’re crafting a new experience. Drop your email and we’ll ping you when it’s live.</p>
+        playButton.addEventListener('click', () => {
+            // Clear previous content
+            gameContainer.innerHTML = '';
 
-      <div class="progress" aria-label="build progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="42" role="progressbar">
-        <div class="bar"></div>
-      </div>
+            // Create an iframe to load the game
+            const iframe = document.createElement('iframe');
+            iframe.src = 'game.html';  // Make sure your game file is named "game.html"
+            iframe.width = '800';
+            iframe.height = '600';
+            iframe.style.border = '1px solid black';
 
-      <form action="#" method="post" onsubmit="event.preventDefault(); document.getElementById('thanks').hidden=false; this.reset();">
-        <label class="tiny" for="email" id="email-label">Get notified</label>
-        <input id="email" name="email" type="email" placeholder="you@example.com" aria-labelledby="email-label" required />
-        <button type="submit" aria-label="Notify me">Notify me</button>
-      </form>
-      <p id="thanks" hidden role="status">Thanks! You’re on the list. ✨</p>
-
-      <div class="meta">
-        <div class="stat">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          v0.1 — Placeholder
-        </div>
-        <div class="stat">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.77 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-          Crafted with care
-        </div>
-        <div class="stat">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 10a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          ETA: Soon™
-        </div>
-      </div>
-
-      <div class="social" aria-label="social links">
-        <a href="#" aria-label="Twitter/X">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 3H16l-4 5.4L7.8 3H3.5l6.4 9.1L3 21h4.2l4.3-5.8 4 5.8H21l-6.9-9.8L20.3 3z"/></svg>
-        </a>
-        <a href="#" aria-label="Instagram">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
-        </a>
-        <a href="#" aria-label="Email">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" stroke="currentColor" stroke-width="2"/></svg>
-        </a>
-      </div>
-    </main>
-
-    <footer>
-      <span>© <span id="year"></span> Your Company</span>
-      <a class="tiny" href="mailto:hello@example.com">hello@example.com</a>
-    </footer>
-  </div>
-
-  <script>
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+            gameContainer.appendChild(iframe);
+        });
+    </script>
 </body>
 </html>
