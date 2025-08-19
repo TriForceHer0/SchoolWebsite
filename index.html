@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Game Page</title>
+    <title>My Game Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            margin: 20px 0;
+        }
+        iframe {
+            border: 2px solid #000;
+            width: 90%;
+            height: 600px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Game</h1>
-    <button id="playGame">Play Game</button>
+    <h1>Welcome to My Game!</h1>
+    <p>Play the game below:</p>
 
-    <!-- Container where the game will appear -->
-    <div id="gameContainer" style="margin-top:20px;">
-        <!-- Game will load here -->
-    </div>
+    <!-- Embed your large game.html file here -->
+    <iframe src="game.html"></iframe>
 
-    <script>
-        const playButton = document.getElementById('playGame');
-        const gameContainer = document.getElementById('gameContainer');
-
-        playButton.addEventListener('click', () => {
-            // Clear previous content
-            gameContainer.innerHTML = '';
-
-            // Create an iframe to load the game
-            const iframe = document.createElement('iframe');
-            iframe.src = 'game.html';  // Make sure your game file is named "game.html"
-            iframe.width = '800';
-            iframe.height = '600';
-            iframe.style.border = '1px solid black';
-
-            gameContainer.appendChild(iframe);
-        });
-    </script>
 </body>
 </html>
